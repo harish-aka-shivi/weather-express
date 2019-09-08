@@ -18,22 +18,28 @@ hbs.registerPartials(partialPath)
 
 app.get('', (req,res) => {
   res.render('index', {
-    title: "hanldebars args",
+    title: "Weather",
     name:"harish",
   });
 })
 
 app.get('/help', (req, res) => {
   res.render('help', {
-    help:"giving you helpn from args",
+    title: "Help",
+    helpText:"Get help from here",
     name:"harish",
   
   })
 })
 
-app.get('/help', (req, res) => {
+app.get('/about', (req, res) => {
+  res.render('about', {
+    title: "Harish Rana",
+    helpText:"I am harish Rana",
+    name:"harish",
   
-});
+  })
+})
 
 app.get('/about', (req, res) => {
   res.send("<h2>ABout page</h2>")
@@ -43,6 +49,19 @@ app.get('/weather', (req,res) => {
   res.send({
     forecast:"rainy",
     location:'delhi',
+  })
+})
+
+app.get('/help/*', (req,res) => {
+  res.render('notFound', {
+    msg:"no help subtopics found"
+  })
+})
+
+
+app.get('*', (req,res) => {
+  res.render('notFound', {
+    msg:"nothing found"
   })
 })
 
